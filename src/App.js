@@ -1,10 +1,11 @@
 import './App.css'
+import Home from './components/Home'
 import Header from './components/Header'
 import Pokemons from './components/Pokemons'
+import Pokemon from './components/Pokemon'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
     })
   }, [])
 
+
+
   if (!pokemon) return ( 
     <div className="App">
         <h2>No Pokemon!</h2>
@@ -34,10 +37,14 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Pokemons pokemon={pokemon}/>
-      </Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="pokemons" element={<Pokemons pokemon={pokemon}/>} />
+        <Route path="pokemons/:pokemon" element={<Pokemon />} />
+      </Routes>
+      <button>Previoud</button>
+      <button>Next</button>
     </div>
   )
 }

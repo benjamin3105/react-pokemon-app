@@ -5,7 +5,7 @@ export default function Pokemons({pokemon}) {
   return (
     <div>      
         {pokemon.map((p, index) => (
-            <Link to={p.url} key={index}><div>{p.name}</div></Link>
+            <Link to={`${p.name}`} key={index}><div>{p.name}</div></Link>
         )
         )}
     </div>
