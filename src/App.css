@@ -1,18 +1,216 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+body {
+  font-family: 'Fredoka One', cursive;
+}
+h1 {
+  text-transform: capitalize;
+  font-size: 40px;
 }
 .loader {
   max-width: 100px;
   position: relative;
   margin: 0 auto;
 }
-.card {
-  max-width: 150px;
-  max-height: 150px;
+.pokemon-image {
+  max-width: 200px;
+  max-height: 200px;
   width: 100%;
   height: 100%;
-  padding: 30px;
-  border: 1px solid #efefef;
-  margin-bottom: 30px;
-  float: left;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: -100px;
 }
+.pokemon-image.big-image {
+  max-width: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -150px;
+}
+.badges-position {
+  margin-top: 10px; 
+  margin-left: 10px;
+}
+.normal {
+	background-color: #A8A878;
+	border: 1px solid #6D6D4E;
+}
+
+.fire {
+	background-color: #F08030;
+	border: 1px solid #9C531F;
+}
+
+.water {
+	background-color: #6890F0;
+	border: 1px solid #445E9C;
+}
+
+.electric {
+	background-color: #F8D030;
+	border: 1px solid #A1871F;
+}
+
+.grass {
+	background-color: #78C850;
+	border: 1px solid #4E8234;
+}
+
+.ice {
+	background-color: #98D8D8;
+	border: 1px solid #638D8D;
+}
+
+.ground {
+	background-color: #E0C068;
+	border: 1px solid #927D44;
+}
+
+.flying {
+	background-color: #A890F0;
+	border: 1px solid #6D5E9C;
+}
+
+.ghost {
+	background-color: #705898;
+	border: 1px solid #493963;
+}
+
+.rock {
+	background-color: #B8A038;
+	border: 1px solid #786824;
+}
+
+.fighting {
+	background-color: #C03028;
+	border: 1px solid #7D1F1A;
+}
+
+.poison {
+	background-color: #A040A0;
+	border: 1px solid #682A68;
+}
+
+.psychic {
+	background-color: #F85888;
+	border: 1px solid #A13959;
+}
+
+.bug {
+	background-color: #A8B820;
+	border: 1px solid #6D7815;
+}
+
+.dark {
+	background-color: #705848;
+	border: 1px solid #49392F;
+}
+
+.steel {
+	background-color: #B8B8D0;
+	border: 1px solid #787887;
+}
+
+.dragon {
+	background-color: #7038F8;
+	border: 1px solid #4924A1;
+}
+
+.fairy {
+	background-color: #7038F8;
+	border: 1px solid #4924A1;
+}
+.type-name {
+  text-transform: capitalize;
+  padding-left: 40px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.icon-normal {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/aa/Pok%C3%A9mon_Normal_Type_Icon.svg');
+}
+
+.icon-fire {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Pok%C3%A9mon_Fire_Type_Icon.svg');
+}
+
+.icon-water {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Pok%C3%A9mon_Water_Type_Icon.svg');
+}
+
+.icon-electric {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Pok%C3%A9mon_Electric_Type_Icon.svg');
+}
+
+.icon-grass {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f6/Pok%C3%A9mon_Grass_Type_Icon.svg');
+}
+
+.icon-ice {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/88/Pok%C3%A9mon_Ice_Type_Icon.svg');
+}
+
+.icon-ground {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8d/Pok%C3%A9mon_Ground_Type_Icon.svg');
+}
+
+.icon-flying {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Pok%C3%A9mon_Flying_Type_Icon.svg');
+}
+
+.icon-ghost {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Pok%C3%A9mon_Ghost_Type_Icon.svg');
+}
+
+.icon-rock {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bb/Pok%C3%A9mon_Rock_Type_Icon.svg');
+}
+
+.icon-fighting {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/be/Pok%C3%A9mon_Fighting_Type_Icon.svg');
+}
+
+.icon-poison {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Pok%C3%A9mon_Poison_Type_Icon.svg');
+}
+
+.icon-psychic {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Pok%C3%A9mon_Psychic_Type_Icon.svg');
+}
+
+.icon-bug {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Pok%C3%A9mon_Bug_Type_Icon.svg');
+}
+
+.icon-dark {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/09/Pok%C3%A9mon_Dark_Type_Icon.svg');
+}
+
+.icon-steel {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/38/Pok%C3%A9mon_Steel_Type_Icon.svg');
+}
+
+.icon-dragon {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a6/Pok%C3%A9mon_Dragon_Type_Icon.svg');
+}
+
+.icon-fairy {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/08/Pok%C3%A9mon_Fairy_Type_Icon.svg');
+}
+

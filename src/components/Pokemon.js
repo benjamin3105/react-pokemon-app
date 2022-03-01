@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
+import { Card, Col, Container, Row, Spinner } from 'react-bootstrap';
 
 export default function Pokemon({name}) {
     const [data, setData] = useState([])
@@ -22,45 +23,42 @@ export default function Pokemon({name}) {
         .then(function () {
             // always executed
         })
-    }, [])
+    }, [pokemon])
     
     if (isLoading) {
         return (
-            <main className='loader'>
-                <svg version="1.1" id="L4" x="0px" y="0px"
-                viewBox="0 0 100 100" enableBackground="new 0 0 0 0">
-                <circle fill="#000" stroke="none" cx="6" cy="50" r="6">
-                    <animate
-                    attributeName="opacity"
-                    dur="1s"
-                    values="0;1;0"
-                    repeatCount="indefinite"
-                    begin="0.1"/>    
-                </circle>
-                <circle fill="#000" stroke="none" cx="26" cy="50" r="6">
-                    <animate
-                    attributeName="opacity"
-                    dur="1s"
-                    values="0;1;0"
-                    repeatCount="indefinite" 
-                    begin="0.2"/>       
-                </circle>
-                <circle fill="#000" stroke="none" cx="46" cy="50" r="6">
-                    <animate
-                    attributeName="opacity"
-                    dur="1s"
-                    values="0;1;0"
-                    repeatCount="indefinite" 
-                    begin="0.3"/>     
-                </circle>
-                </svg>
-            </main>
+            <Container>
+                <Row className="justify-content-center">
+                    <Col xl={4} className="text-center"><Spinner animation="border" /></Col>
+                </Row>
+            </Container>
         )
     }
     return (
-    <main>
-        {data.name}
-        <img src={data.sprites.other.dream_world.front_default} />
-    </main>
+        <Row>
+            <Col xl={4}>
+                <Card className={`ratio ratio-1x1 mb-4 p-3 ${data.types[0].type.name}`}>
+                <img className="pokemon-image big-image" alt={data.name} src={data.sprites.other.dream_world.front_default} />
+                </Card>
+            </Col>
+            <Col xl={8}>
+                <h1>{data.name}</h1>
+                {data.types.map((type, index) => (
+                <p className="type-name" key={index}>
+                    <span className={`icon icon-${type.type.name}`}></span>{type.type.name}
+                </p>
+                ))} 
+                {data.stats.map((stat, index) => (
+                <p className="stat-name" key={index}>
+                    {stat.stat.name.split('-').join(' ')} {stat.base_stat}
+                </p>
+                ))} 
+                {data.abilities.map((ability, index) => (
+                <p className="ability-name" key={index}>
+                    {ability.ability.name.split('-').join(' ')}
+                </p>
+                ))} 
+            </Col>
+        </Row>
     )
 }

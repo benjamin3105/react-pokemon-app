@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Badge, Card } from 'react-bootstrap'
 
 export default function PokemonCard({name}) {
 
@@ -27,8 +28,15 @@ export default function PokemonCard({name}) {
         return <p>...</p>
     }
     return (
-    <main>
-        <img className="card" src={data.sprites.other.dream_world.front_default} />
-    </main>
+    <Card className={`ratio ratio-1x1 mb-4 p-3 ${data.types[0].type.name}`}>
+        <div className='badges-position'>
+            {data.types.map((type, index) => (
+                <Badge className="mx-1" pill bg="light" text="dark" key={index}>
+                {type.type.name}
+                </Badge>
+            ))}        
+        </div>
+        <img className="pokemon-image" alt={name} src={data.sprites.other.dream_world.front_default} />
+    </Card>
     )
 }

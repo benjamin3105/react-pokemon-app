@@ -1,12 +1,19 @@
 import React from 'react'
+import { Container, Nav, Navbar, NavbarBrand, NavItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
-    <header>
-      <h1>Pokemon App</h1>
-      <Link to="/">Home</Link>
-      <Link to="pokemons">Pokemons</Link>
-    </header>
+    <Navbar bg="light" expand="lg" className="mb-4">
+      <Container>
+        <NavbarBrand>
+          Pokemon
+        </NavbarBrand>
+        <Nav>
+          <NavItem><Link className="nav-link" to="/">Home</Link></NavItem> 
+          <NavItem><Link className="nav-link" to="pokemons">Pokemons</Link></NavItem>
+        </Nav>
+      </Container>
+    </Navbar>
   )
 }

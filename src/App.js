@@ -4,8 +4,9 @@ import Header from './components/Header'
 import Pokemons from './components/Pokemons'
 import Pokemon from './components/Pokemon'
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Routes, Route } from "react-router-dom";
+import { Container } from 'react-bootstrap'
 
 function App() {
 
@@ -52,13 +53,13 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
-        <Route path="pokemons/:pokemon" element={<Pokemon />} />
-      </Routes>
-      
-      
+      <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
+            <Route path="pokemons/:pokemon" element={<Pokemon />} />
+          </Routes>
+      </Container>
     </div>
   )
 }
