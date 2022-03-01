@@ -10,12 +10,17 @@ import { Routes, Route, Link } from "react-router-dom";
 function App() {
 
   const [pokemon, setPokemon] = useState([])
+  const [currentPageUrl, setcurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
+  const [nextPageUrl, setNextPageUrl] = useState()
+  const [prevPageUrl, setPrevPageUrl] = useState()
 
   useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon`)
+    axios.get(currentPageUrl)
     .then(function (response) {
     // handle success
     console.log(response.data)
+    setNextPageUrl(response.data.next)
+    setPrevPageUrl(response.data.previous)
     setPokemon(response.data.results)
     })
     .catch(function (error) {
@@ -25,9 +30,18 @@ function App() {
     .then(function () {
     // always executed
     })
-  }, [])
+  }, [currentPageUrl])
 
+  function handleNext() {
+    if(nextPageUrl === null) return
+    setcurrentPageUrl(nextPageUrl)
+    console.log(nextPageUrl)
+  }
 
+  function handlePrev() {
+    if(prevPageUrl === null) return
+    setcurrentPageUrl(prevPageUrl)
+  }
 
   if (!pokemon) return ( 
     <div className="App">
@@ -40,11 +54,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="pokemons" element={<Pokemons pokemon={pokemon}/>} />
+        <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
         <Route path="pokemons/:pokemon" element={<Pokemon />} />
       </Routes>
-      <button>Previoud</button>
-      <button>Next</button>
+      
+      
     </div>
   )
 }

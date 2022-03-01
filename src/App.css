@@ -6,3 +6,13 @@
   position: relative;
   margin: 0 auto;
 }
+.card {
+  max-width: 150px;
+  max-height: 150px;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  border: 1px solid #efefef;
+  margin-bottom: 30px;
+  float: left;
+}

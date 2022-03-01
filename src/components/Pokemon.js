@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 
-export default function Pokemon() {
+export default function Pokemon({name}) {
     const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(true)
     const { pokemon } = useParams()
