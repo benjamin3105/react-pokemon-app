@@ -8,8 +8,8 @@ export default function Pokemons({pokemon, handlePrev, handleNext}) {
   return (
     <Container>
       <Row>    
-          {pokemon.map((p, index) => (
-              <Col xl={2} lg={3} md={4} key={index}>
+          {pokemon.map((p, i) => (
+              <Col xl={2} lg={3} md={4} key={i}>
                 <Link to={`${p.name}`} >
                   <PokemonCard name={p.name} />
                 </Link>
