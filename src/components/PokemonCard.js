@@ -14,6 +14,7 @@ export default function PokemonCard({name}) {
             console.log(response.data)
             setData(response.data)
             setLoading(false)
+            
         })
         .catch(function (error) {
             // handle error
@@ -25,18 +26,23 @@ export default function PokemonCard({name}) {
     }, [name])
     
     if (isLoading) {
-        return <p>...</p>
+        return (
+            <Card className={`ratio ratio-1x1 mb-4 p-3 grey-bg`}>
+                
+            </Card>
+        )
     }
     return (
-    <Card className={`ratio ratio-1x1 mb-4 p-3 ${data.types[0].type.name}`}>
+    <Card className={`ratio ratio-1x1 mb-4 p-3 ${data.types[0].type.name} ${data.sprites.other.dream_world.front_default}`}>
         <div className='badges-position'>
             {data.types.map((type, index) => (
-                <Badge className="mx-1" pill bg="light" text="dark" key={index}>
+                <Badge className="mx-1" bg="light" text="dark" key={index}>
                 {type.type.name}
                 </Badge>
             ))}        
         </div>
-        <img className="pokemon-image" alt={name} src={data.sprites.other.dream_world.front_default} />
+        {(data.sprites.other.dream_world.front_default === null) ? <img className="pokemon-image" alt={name} src={data.sprites.other['official-artwork'].front_default} /> : <img className="pokemon-image" alt={name} src={data.sprites.other.dream_world.front_default} />}
+        
     </Card>
     )
 }

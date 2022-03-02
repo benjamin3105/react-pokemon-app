@@ -3,10 +3,10 @@ import Home from './components/Home'
 import Header from './components/Header'
 import Pokemons from './components/Pokemons'
 import Pokemon from './components/Pokemon'
+import Move from './components/Move'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom";
-import { Container } from 'react-bootstrap'
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
     .then(function (response) {
     // handle success
     console.log(response.data)
+    
     setNextPageUrl(response.data.next)
     setPrevPageUrl(response.data.previous)
     setPokemon(response.data.results)
@@ -53,13 +54,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Container>
+      
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
             <Route path="pokemons/:pokemon" element={<Pokemon />} />
+            <Route path="moves/:move" element={<Move />} />
           </Routes>
-      </Container>
+      
     </div>
   )
 }

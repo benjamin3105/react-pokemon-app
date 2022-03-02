@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
-    <Navbar bg="light" expand="lg" className="mb-4">
+    <Navbar bg="light" expand="lg">
       <Container>
         <NavbarBrand>
           Pokemon
