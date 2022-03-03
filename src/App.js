@@ -4,6 +4,8 @@ import Header from './components/Header'
 import Pokemons from './components/Pokemons'
 import Pokemon from './components/Pokemon'
 import Move from './components/Move'
+import Ability from './components/Ability'
+import Loading from './components/Loading'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom";
@@ -45,11 +47,7 @@ function App() {
     setcurrentPageUrl(prevPageUrl)
   }
 
-  if (!pokemon) return ( 
-    <div className="App">
-        <h2>No Pokemon!</h2>
-    </div>
-  )
+  if (!pokemon) return ( <Loading /> )
 
   return (
     <div className="App">
@@ -60,6 +58,7 @@ function App() {
             <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
             <Route path="pokemons/:pokemon" element={<Pokemon />} />
             <Route path="moves/:move" element={<Move />} />
+            <Route path="abilities/:ability" element={<Ability />} />
           </Routes>
       
     </div>

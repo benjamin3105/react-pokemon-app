@@ -11,6 +11,8 @@ import 'swiper/css/pagination'
 
 export default function Pokemon() {
     const [data, setData] = useState([])
+    const [pokemonType, setPokemonType] = useState([])
+    const [loadPokemons, setloadPokemons] = useState(false)
     const [isLoading, setLoading] = useState(true)
     const [attakAmount, setAttackAmount] = useState('5')
     const { pokemon } = useParams()
@@ -20,6 +22,7 @@ export default function Pokemon() {
         .then(function (response){
             // handle succes
             setData(response.data)
+            console.log(response.data)
             setLoading(false)
         })
         .catch(function (error) {
@@ -38,6 +41,18 @@ export default function Pokemon() {
     function showMoreMoves() {
         setAttackAmount('999')
     }
+
+    function handlePokemonType(e) {
+        console.log(e)
+        axios.get(`https://pokeapi.co/api/v2/type/${e}`)
+        .then(function (response) {
+            console.log(response.data.pokemon)
+            setPokemonType(response.data.pokemon)
+            setloadPokemons(true)
+        })
+    }
+
+    
     
     if (isLoading) {
         return (
@@ -59,7 +74,9 @@ export default function Pokemon() {
                         <ListGroup horizontal className="mb-3">
                         {data.types.map((type, i) => (
                         <ListGroupItem className="type-name" key={i}>
+                            <Button variant="link" onClick={(e) => handlePokemonType(type.type.name)}>
                             <span className={`icon icon-${type.type.name}`}></span>{type.type.name}
+                            </Button>
                         </ListGroupItem>
                         ))} 
                         </ListGroup>
@@ -87,7 +104,7 @@ export default function Pokemon() {
                         <ListGroup className="mb-3">
                         {data.abilities.map((ability, i) => (
                             <ListGroupItem className="ability-name" key={i}>
-                                {ability.ability.name.split('-').join(' ')}
+                                <Link to={`/abilities/${ability.ability.name}`}>{ability.ability.name.split('-').join(' ')}</Link>
                             </ListGroupItem>
                         ))} 
                         </ListGroup>
@@ -102,6 +119,42 @@ export default function Pokemon() {
                         { (5 < (data.moves).length) ? <Button onClick={showMoreMoves} variant="dark">Show more moves</Button> : null }
 
                     </Col>
+                </Row>
+
+                <Row>
+
+                    {(loadPokemons === true) ?
+                    <Col xl={12}>
+                        <Swiper
+                        modules={[Navigation, Pagination]}
+                        spaceBetween={30}
+                        slidesPerView={3}
+                        slidesPerGroup={3}
+                        navigation
+                        pagination={{ clickable: true }}
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 4,
+                                slidesPerGroup: 4,
+                            },
+                            991: {
+                                slidesPerView: 6,
+                                slidesPerGroup: 6,
+                            },
+                        }}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)} >
+                            {pokemonType.map((p, i) => (
+                                <SwiperSlide key={i}>
+                                    <Link to={`/pokemons/${p.pokemon.name}`} >
+                                    <PokemonCard name={p.pokemon.name} />
+                                    </Link>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </Col> 
+                    : null }
+
                 </Row>
 
             </Container>

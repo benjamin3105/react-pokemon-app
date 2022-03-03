@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, useParams } from 'react-router-dom'
-import PokemonCard from './PokemonCard'
-import Loading from './Loading'
+import { Link, useParams } from 'react-router-dom' 
 import { Badge, Button, Card, Col, Container, ListGroup, ListGroupItem, Row, Spinner } from 'react-bootstrap'
+import Loading from './Loading'
+import PokemonCard from './PokemonCard'
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-
-export default function Move() {
+export default function Ability() {
     const [data, setData] = useState([])
     const [loadPokemons, setLoadPokemons] = useState(false)
     const [isLoading, setLoading] = useState(true)
-
-    const { move } = useParams()
+    const { ability } = useParams()
 
     useEffect(() => {
-        axios.get(`https://pokeapi.co/api/v2/move/${move}`)
+        axios.get(`https://pokeapi.co/api/v2/ability/${ability}`)
         .then(function (response) {
             console.log(response.data)
             setData(response.data)
@@ -32,7 +30,7 @@ export default function Move() {
         .then(function () {
             // always executed
         })
-    }, [])
+    },[])
 
     function handlePokemons() {
         setLoadPokemons(true)
@@ -54,38 +52,19 @@ export default function Move() {
                                 <span key={i}>{name.name}</span>
                             ])}
                             </ListGroupItem>
-                        </ListGroup>
-
-
-                        <ListGroup className="mb-3">
-                           
-                            {(data.accuracy) ? <ListGroupItem>Accuracy {data.accuracy}</ListGroupItem> : null }
-                            {(data.power) ? <ListGroupItem>Power {data.power}</ListGroupItem> : null }
-                            {(data.pp) ? <ListGroupItem>PP {data.pp}</ListGroupItem> : null }
-                            {(data.effect_chance) ? <ListGroupItem>Effect Chance {data.effect_chance}</ListGroupItem> : null }
-                            {(data.type) ? <ListGroupItem className="type-name"><span className={`icon icon-${data.type.name}`}></span>{data.type.name}</ListGroupItem> : null }
-
-                            {/* {data.types.map((type, i) => (
-                            <ListGroupItem className="type-name" key={i}>
-                                <span className={`icon icon-${type.type.name}`}></span>{type.type.name}
-                            </ListGroupItem>
-                            ))}  */}
-                               
                             <ListGroupItem>
                                 <strong>Effect Entries</strong> {data.effect_entries.effect}
                                 {data.effect_entries.map((effect, i) => (
-                                    <p className="ability-name mb-0" key={i}>
-                                        {effect.effect}
-                                    </p>
+                                    (effect.language.name === 'en') ? <p className="ability-name mb-0" key={i}>{effect.effect}</p> : null
                                 ))}
-                            </ListGroupItem>   
-                            <ListGroupItem>
-                                Damage Class {data.damage_class.name}
                             </ListGroupItem> 
                         </ListGroup>
                         
+                        
+
+
                     </Col>
-                    
+
                     {(loadPokemons === true) ? null : 
                     <Col xl={12} className="mb-3">
                         <Button variant="dark" onClick={handlePokemons}>Load all Pokemons that uses {data.name.split('-').join(' ')}</Button>
@@ -113,18 +92,17 @@ export default function Move() {
                         }}
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={(swiper) => console.log(swiper)} >
-                            {data.learned_by_pokemon.map((p, i) => (
+                            {data.pokemon.map((p, i) => (
                                 <SwiperSlide key={i}>
-                                    <Link to={`/pokemons/${p.name}`} >
-                                    <PokemonCard name={p.name} />
+                                    <Link to={`/pokemons/${p.pokemon.name}`} >
+                                    <PokemonCard name={p.pokemon.name} />
                                     </Link>
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                     </Col> 
                     : null }
-                    
-                    
+
                 </Row>
             </Container>
         </Container>

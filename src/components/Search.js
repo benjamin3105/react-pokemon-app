@@ -10,7 +10,7 @@ export default function Search(props) {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search for Pokemon" />
             <button
-            onClick={(e) => props.getPokemon(search)}>Search Pokemon</button>
+            onClick={(e) => props.getPokemonType(search)}>Search Pokemon</button>
         </main>
     )
 }
