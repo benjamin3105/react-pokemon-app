@@ -12,6 +12,7 @@ export default function Header() {
         <Nav>
           <NavItem><Link className="nav-link" to="/">Home</Link></NavItem> 
           <NavItem><Link className="nav-link" to="pokemons">Pokemons</Link></NavItem>
+          <NavItem><Link className="nav-link" to="types">Types</Link></NavItem>
         </Nav>
       </Container>
     </Navbar>

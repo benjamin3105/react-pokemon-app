@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Badge, Card } from 'react-bootstrap'
+import Loading from './Loading'
 
 export default function PokemonCard({name}) {
 
@@ -25,13 +26,8 @@ export default function PokemonCard({name}) {
         })
     }, [name])
     
-    if (isLoading) {
-        return (
-            <Card className={`ratio ratio-1x1 mb-4 p-3 grey-bg`}>
-                
-            </Card>
-        )
-    }
+    if (isLoading) return ( <Loading /> )
+
     return (
     <Card className={`ratio ratio-1x1 mb-4 p-3 ${data.types[0].type.name} ${data.sprites.other.dream_world.front_default}`}>
         <div className='badges-position'>

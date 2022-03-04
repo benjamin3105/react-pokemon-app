@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
 import { Badge, Button, Card, Col, Container, ListGroup, ListGroupItem, Row, Spinner } from 'react-bootstrap'
 import PokemonCard from './PokemonCard'
+import Loading from './Loading'
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -52,17 +53,8 @@ export default function Pokemon() {
         })
     }
 
-    
-    
-    if (isLoading) {
-        return (
-            <Container>
-                <Row className="justify-content-center">
-                    <Col xl={4} className="text-center"><Spinner animation="border" /></Col>
-                </Row>
-            </Container>
-        )
-    }
+    if (isLoading) return ( <Loading /> )
+
     return (
         <Container fluid className={`pt-4 h-100`}>
             <Container>

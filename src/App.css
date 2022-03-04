@@ -140,6 +140,16 @@ h1 {
 	background-color: #7038F8;
 	/* border: 1px solid #4924A1; */
 }
+
+.unknown {
+	background-color: #000000;
+	/* border: 1px solid #4924A1; */
+}
+
+.shadow {
+	background-color: #1c1629;
+	/* border: 1px solid #4924A1; */
+}
 .type-name {
   text-transform: capitalize;
   padding-left: 40px;
@@ -227,3 +237,18 @@ h1 {
 	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/08/Pok%C3%A9mon_Fairy_Type_Icon.svg');
 }
 
+.type-card {
+	background-size: 100px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.type-title {
+	text-transform: uppercase;
+	font-family: 'Fredoka One', cursive;
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}

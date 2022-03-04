@@ -1,4 +1,7 @@
 import './App.css'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Routes, Route } from "react-router-dom";
 import Home from './components/Home'
 import Header from './components/Header'
 import Pokemons from './components/Pokemons'
@@ -6,9 +9,8 @@ import Pokemon from './components/Pokemon'
 import Move from './components/Move'
 import Ability from './components/Ability'
 import Loading from './components/Loading'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import Types from './components/Types'
+import Type from './components/Type';
 
 function App() {
 
@@ -57,6 +59,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
             <Route path="pokemons/:pokemon" element={<Pokemon />} />
+            <Route path="types" element={<Types />} />
+            <Route path="types/:type" element={<Type />} />
             <Route path="moves/:move" element={<Move />} />
             <Route path="abilities/:ability" element={<Ability />} />
           </Routes>
