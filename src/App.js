@@ -1,7 +1,7 @@
 import './App.css'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"
 import Home from './components/Home'
 import Header from './components/Header'
 import Pokemons from './components/Pokemons'
@@ -10,7 +10,8 @@ import Move from './components/Move'
 import Ability from './components/Ability'
 import Loading from './components/Loading'
 import Types from './components/Types'
-import Type from './components/Type';
+import Type from './components/Type'
+import { Helmet } from 'react-helmet'
 
 function App() {
 
@@ -53,8 +54,12 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Pokémon Pokédex</title>
+          <link rel="canonical" href="https://react.thegoodplace-development.nl" />
+      </Helmet>
       <Header />
-      
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="pokemons" element={<Pokemons pokemon={pokemon} handlePrev={handlePrev} handleNext={handleNext} />} />
